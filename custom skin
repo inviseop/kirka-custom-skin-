@@ -1,0 +1,18 @@
+/* edited version of custom skin link from bkc, updated to fix muzzle img */
+const customSkinLink = "https://media.discordapp.net/attachments/1276639497865396391/1276713401514590268/image-80.png?ex=66cb3043&is=66c9dec3&hm=e227d3c888b4d25e6014b74c0d62fbe3f32955ed72299c2150d0f7eb8ee68bba&=&format=webp&quality=lossless&width=128&height=128";
+
+/* DONT CHANGE ANYTHING BELOW */
+
+const oldIsArr = Array.isArray;
+
+const muzzleImg = "https://kirka.io/assets/img/__shooting-fire__.effa20af.png";
+
+Array.isArray = (...args) => {
+
+    if (args[0] && args[0].map && args[0].map.image) {
+        if (args[0].map.image.width === 64 && args[0].map.image.height === 64 && args[0].map.image.src !== muzzleImg) {
+            if (customSkinLink !== '') args[0].map.image.src = customSkinLink;
+        }
+    }
+
+    return oldIsArr(...args);
